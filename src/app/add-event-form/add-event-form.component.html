@@ -1,0 +1,181 @@
+<div class="container">
+  <div class="card bg-light border-info">
+    <div class="card-body">
+      <div class="user" style="align-items: center">
+        <h4>Event Information</h4>
+        <hr />
+        <div class="card bg-light border-0">
+          <form #eventform="ngForm" (ngSubmit)="onClickSubmit(eventform.value)">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input
+                [(ngModel)]="name"
+                #n="ngModel"
+                type="text"
+                name="name"
+                class="form-control"
+                required
+              />
+              <div *ngIf="n.invalid && n.touched">
+                <small *ngIf="n.errors?.required" class="text-danger"
+                  >Name is required</small
+                >
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="location">Location</label>
+              <input
+                [(ngModel)]="location"
+                #l="ngModel"
+                type="text"
+                class="form-control"
+                name="location"
+                required
+              />
+              <div *ngIf="l.invalid && l.touched">
+                <small *ngIf="l.errors?.required" class="text-danger"
+                  >Location is required</small
+                >
+              </div>
+            </div>
+
+            <!-- <div class="form-group">
+              <label for="problemStatement">Category</label>
+              <input
+                [(ngModel)]="category"
+                #t="ngModel"
+                type="text"
+                class="form-control"
+                required
+              />
+              <div *ngIf="n.invalid && n.touched">
+                <small *ngIf="n.errors?.required" class="text-danger"
+                  >Name is required</small
+                >
+              </div>
+            </div> -->
+
+            <div class="form-group">
+              <label for="description">Description</label>
+              <input
+                [(ngModel)]="description"
+                #d="ngModel"
+                type="text"
+                class="form-control"
+                name="description"
+                required
+              />
+              <div *ngIf="d.invalid && d.touched">
+                <small *ngIf="d.errors?.required" class="text-danger"
+                  >Description is required</small
+                >
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="date">Date</label>
+              <input
+                [(ngModel)]="date"
+                #df="ngModel"
+                class="form-control"
+                type="date"
+                name="Date"
+                id="Date"
+                required
+              />
+              <div *ngIf="df.invalid && df.touched">
+                <small *ngIf="df.errors?.required" class="text-danger"
+                  >Date is required</small
+                >
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="time">Time</label>
+              <input
+                [(ngModel)]="time"
+                #t="ngModel"
+                class="form-control"
+                type="text"
+                name="time"
+                required
+              />
+              <div *ngIf="t.invalid && t.touched">
+                <small *ngIf="t.errors?.required" class="text-danger"
+                  >Time is required</small
+                >
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="startup">Select Startup for Event</label>
+              <select
+                (change)="ViewSelectedStartup()"
+                [(ngModel)]="selectedStartup"
+                class="form-control"
+                #st="ngModel"
+                name="Startup"
+                id="Startup"
+                required
+              >
+                <option [ngValue]="undefined" selected disabled>
+                  Select Startup
+                </option>
+                <option *ngFor="let c of StartupsList">
+                  {{ c.Name }}
+                </option>
+              </select>
+              <div *ngIf="st.invalid && st.touched">
+                <small *ngIf="st.errors?.required" class="text-danger"
+                  >Selecting a Startup is required</small
+                >
+              </div>
+            </div>
+
+            <div class="form-group" *ngIf="!EditEventFlag">
+              <label for="problemStatement">Event Image</label>
+              <input
+                (change)="onChange($event)"
+                [(ngModel)]="coverImage"
+                #ci="ngModel"
+                type="file"
+                name="file1"
+                id="file1"
+                style="width: 100%"
+                required
+              />
+              <div *ngIf="ci.invalid && ci.touched">
+                <small *ngIf="ci.errors?.required" class="text-danger"
+                  >Image is required</small
+                >
+              </div>
+            </div>
+
+            <div class="form-group" *ngIf="!EditEventFlag">
+              <div class="col-md-offset-2 col-md-10">
+                <input
+                  [disabled]="!eventform.valid"
+                  type="submit"
+                  value="Create"
+                  class="btn btn-outline-primary"
+                />
+              </div>
+            </div>
+
+            <div class="form-group" *ngIf="EditEventFlag">
+              <div class="col-md-offset-2 col-md-10">
+                <input
+                  [disabled]="!eventform.valid"
+                  type="submit"
+                  value="Update"
+                  class="btn btn-outline-primary"
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

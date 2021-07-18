@@ -1,0 +1,244 @@
+<body class="bg-gradient-primary">
+  <div class="container">
+    <!-- Outer Row -->
+    <div class="row justify-content-center">
+      <div class="col-xl-10 col-lg-12 col-md-9">
+        <div class="card o-hidden border-0 shadow-lg my-5">
+          <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+              <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+              <div class="col-lg-6">
+                <div class="p-5">
+                  <div class="text-center">
+                    <h1 class="h4 text-gray-900 mb-4"><b>NexCubator</b></h1>
+                    <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                  </div>
+
+                  <form
+                    class="user"
+                    #usersignup="ngForm"
+                    [appMatchPassword]="['Password', 'ConfirmPassword']"
+                    (ngSubmit)="onClickSubmit(usersignup.value)"
+                  >
+                    <div class="form-group">
+                      <input
+                        placeholder="Full name"
+                        [(ngModel)]="FullName"
+                        name="FullName"
+                        type="text"
+                        class="form-control form-control-user"
+                        id="Name"
+                        required
+                        minlength="4"
+                        #name="ngModel"
+                      />
+                      <div
+                        *ngIf="name.invalid && name.touched"
+                        class="text-danger"
+                      >
+                        <small *ngIf="name.errors.required">
+                          Full Name is required.
+                        </small>
+                        <small *ngIf="name.errors.minlength">
+                          Name must be at least 4 characters long.
+                        </small>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <input
+                        [(ngModel)]="emailAddress"
+                        #email="ngModel"
+                        type="email"
+                        class="form-control form-control-user"
+                        id="Email"
+                        placeholder="Email Address"
+                        name="emailAddress"
+                        required
+                        pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                      />
+                      <div *ngIf="email.invalid && email.touched">
+                        <small
+                          *ngIf="email.errors?.required"
+                          class="text-danger"
+                          >Email is required</small
+                        >
+                        <small *ngIf="email.errors?.pattern" class="text-danger"
+                          >Please provide a valid email address</small
+                        >
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <div class="col-sm-6 mb-3 mb-sm-0">
+                        <input
+                          [(ngModel)]="Password"
+                          #pass="ngModel"
+                          type="password"
+                          class="form-control form-control-user"
+                          id="Password"
+                          placeholder="Password"
+                          name="Password"
+                          appPasswordPattern
+                          required
+                          minlength="8"
+                        />
+                        <div
+                          *ngIf="pass.touched && pass.invalid"
+                          class="text-danger"
+                        >
+                          <small *ngIf="pass.errors.required">
+                            <li>Password is required.</li>
+                          </small>
+                          <small
+                            class="text-danger"
+                            *ngIf="pass.touched && pass.errors?.invalidPassword"
+                          >
+                            <li>
+                              Password should have minimum 8 characters, at
+                              least 1 uppercase letter, 1 lowercase letter and 1
+                              number
+                            </li>
+                          </small>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <input
+                          [(ngModel)]="repeatPassword"
+                          #rpass="ngModel"
+                          minlength="8"
+                          type="password"
+                          class="form-control form-control-user"
+                          id="ConfirmPassword"
+                          placeholder="Repeat Password"
+                          name="ConfirmPassword"
+                          required
+                        />
+
+                        <div
+                          *ngIf="rpass.touched && rpass.invalid"
+                          class="text-danger"
+                        >
+                          <!-- <small *ngIf="rpass.errors.minlength">
+                            Password must be atleast 8 characters.
+                          </small> -->
+                          <small *ngIf="rpass.errors.required">
+                            <li>Confirm Password is required.</li>
+                          </small>
+                        </div>
+                        <small
+                          class="text-danger"
+                          *ngIf="
+                            rpass.touched && rpass.errors?.passwordMismatch
+                          "
+                        >
+                          Passwords doesnot match
+                        </small>
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <div class="col-sm-6 mb-3 mb-sm-0">
+                        <select
+                          [(ngModel)]="userType"
+                          #utype="ngModel"
+                          class="form-control"
+                          [ngModelOptions]="{ standalone: true }"
+                          style="border-radius: 10rem; font-size: 0.9rem"
+                          data-val="true"
+                          data-val-required="The Gender field is required."
+                          required
+                        >
+                          <option [ngValue]="undefined" selected disabled>
+                            Select Type
+                          </option>
+                          <option *ngFor="let c of type">
+                            {{ c.name }}
+                          </option>
+                        </select>
+                      </div>
+
+                      <div class="col-sm-6 mb-3 mb-sm-0">
+                        <select
+                          class="form-control"
+                          [(ngModel)]="gender"
+                          #gmodel="ngModel"
+                          [ngModelOptions]="{ standalone: true }"
+                          aria-placeholder=""
+                          style="border-radius: 10rem; font-size: 0.9rem"
+                          data-val="true"
+                          data-val-required="The Gender field is required."
+                          required
+                        >
+                          <option [ngValue]="undefined" selected disabled>
+                            Select Gender
+                          </option>
+                          <option *ngFor="let g of Gender">
+                            {{ g.name }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <input
+                      type="submit"
+                      [disabled]="!usersignup.valid"
+                      class="btn btn-primary btn-user btn-block"
+                      value="Register"
+                    />
+
+                    <hr />
+                  </form>
+
+                  <button
+                    (click)="RegisterWithGoogle()"
+                    class="btn btn-google btn-user btn-block"
+                  >
+                    <i class="fab fa-google fa-fw"></i> Register with Google
+                  </button>
+                  <button
+                    (click)="RegisterWithFacebook()"
+                    class="btn btn-facebook btn-user btn-block"
+                  >
+                    <i class="fab fa-facebook-f fa-fw"></i> Register with
+                    Facebook
+                  </button>
+                  <hr />
+                  <div class="text-center">
+                    <a class="small" href="\settings">Forgot Password?</a>
+                  </div>
+                  <div class="text-center">
+                    <a class="small" href="\login-form"
+                      >Already have an account? Login!</a
+                    >
+                  </div>
+                  <!-- <iframe style="display:none;" src="https://localhost:44352/Login.html" id="ifr"></iframe> -->
+                  <!-- <button (click)="signOutTemporary()">
+                    Sign Out Temporary
+                  </button> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="~/vendor/jquery/jquery.min.js"></script>
+  <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="~/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <script>
+    window.addEventListener("message", function (message) {
+      alert(message.data);
+    });
+  </script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="~/js/sb-admin-2.min.js"></script>
+</body>

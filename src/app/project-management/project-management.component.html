@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en" class="body_div">
+  <title>Trello-Like</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <!-- <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+      integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+      crossorigin="anonymous"
+    /> -->
+    <!-- <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+      integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+      crossorigin="anonymous"
+    ></script> -->
+  </head>
+  <body class="body_div container">
+    <div class="container row justify-content-center board-layout">
+      <div class="left">
+        <div class="board-text">Project Management</div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 form-group d-flex justify-content-center">
+          <select
+            (change)="getSelectedStartup()"
+            [(ngModel)]="selectedStartup"
+            class="form-control"
+            style="max-width: 80%"
+            name="Startup"
+            id="Startup"
+            required
+          >
+            <option [ngValue]="undefined" selected disabled>
+              Select Startup
+            </option>
+            <option *ngFor="let c of StartupsList">
+              {{ c.Name }}
+            </option>
+          </select>
+        </div>
+        <div class="col-sm-6 form-group d-flex justify-content-center">
+          <select
+            (change)="getSelectedProject()"
+            [(ngModel)]="selectedProject"
+            class="form-control"
+            style="max-width: 80%"
+            name="Project"
+            id="Project"
+            required
+          >
+            <option [ngValue]="undefined" selected disabled>
+              Select Project
+            </option>
+            <option *ngFor="let c of StartupProjects">
+              {{ c.Title }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div id="boardlists" class="row board-lists">
+        <div
+          id="list1"
+          class="col-sm board-list"
+          ondrop="drop(event)"
+          ondragover="allowDrop(event)"
+        >
+          <div class="list-title"><h5>To Do</h5></div>
+
+          <div *ngFor="let obj of ToDo">
+            <div *ngIf="obj.TaskStatus == 'Launched'">
+              <div
+                id="{{ obj.TaskId }}"
+                class="card"
+                draggable="true"
+                data-toggle="modal"
+                data-target="#myModal1"
+                (click)="PassDataModal(obj.TaskId)"
+                ondragstart="dragStart(event)"
+              >
+                <div
+                  style="
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                  "
+                >
+                  <div style="display: flex">
+                    {{ obj.TaskName }}
+                  </div>
+                </div>
+
+                <div id="dateshape">
+                  <i class="fa fa-clock-o"> </i>
+                  {{ obj.EndDate }}
+                </div>
+                <div class="ImgLoc">
+                  <div *ngFor="let member of obj.PeopleAdded">
+                    <img
+                      data-toggle="tooltip"
+                      title="{{ member }}"
+                      class="test"
+                      src="../../assets/user.png"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          id="list2"
+          class="col-sm board-list"
+          ondrop="drop(event)"
+          ondragover="allowDrop(event)"
+        >
+          <div class="list-title"><h5>In Progress</h5></div>
+
+          <div *ngFor="let obj of InProgress">
+            <div *ngIf="obj.TaskStatus == 'In Progress'">
+              <div
+                id="{{ obj.TaskId }}"
+                class="card"
+                data-toggle="modal"
+                data-target="#myModal1"
+                draggable="true"
+                (click)="PassDataModal(obj.TaskId)"
+                ondragstart="dragStart(event)"
+              >
+                {{ obj.TaskName }}
+                <div id="dateshape">
+                  <i class="fa fa-clock-o"> </i>
+                  {{ obj.EndDate }}
+                </div>
+                <div class="ImgLoc">
+                  <div *ngFor="let member of obj.PeopleAdded">
+                    <img
+                      data-toggle="tooltip"
+                      title="{{ member }}"
+                      class="test"
+                      src="../../assets/user.png"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          id="list3"
+          class="col-sm board-list"
+          ondrop="drop(event)"
+          ondragover="allowDrop(event)"
+        >
+          <div class="list-title"><h5>Done</h5></div>
+
+          <div *ngFor="let obj of Done">
+            <div *ngIf="obj.TaskStatus == 'Done'">
+              <div
+                id="{{ obj.TaskId }}"
+                class="card"
+                data-toggle="modal"
+                data-target="#myModal1"
+                draggable="true"
+                (click)="PassDataModal(obj.TaskId)"
+                ondragstart="dragStart(event)"
+              >
+                {{ obj.TaskName }}
+                <div id="dateshape">
+                  <i class="fa fa-clock-o"> </i>
+                  {{ obj.EndDate }}
+                </div>
+                <div class="ImgLoc">
+                  <div *ngFor="let member of obj.PeopleAdded">
+                    <img
+                      data-toggle="tooltip"
+                      title="{{ member }}"
+                      class="test"
+                      src="../../assets/user.png"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="AddCard">
+        <button
+          [disabled]="!addCardBool"
+          class="btn btn-danger"
+          data-toggle="modal"
+          data-target="#myModal"
+          id="AddCard"
+        >
+          <i class="fa fa-plus"></i> Add Card
+        </button>
+      </div>
+    </div>
+
+    <!-- Modal Add CArd -->
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4>Task Details</h4>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form
+              class="FormAddcard"
+              #addtask="ngForm"
+              (ngSubmit)="onClickSubmit(addtask.value, EditTaskFlag)"
+            >
+              <div class="form-group">
+                <label for="title"><b>Title:</b></label>
+                <input
+                  type="text"
+                  [(ngModel)]="TaskName"
+                  #ntype="ngModel"
+                  class="form-control"
+                  placeholder="Enter Title"
+                  name="title"
+                  data-val="true"
+                  data-val-required="The Task Name field is required."
+                  required
+                />
+                <div *ngIf="ntype.touched && ntype.invalid" class="text-danger">
+                  <small *ngIf="ntype.errors.required">
+                    <li>Task Name is required.</li>
+                  </small>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="des"><b>Description:</b></label>
+                <input
+                  type="text"
+                  [(ngModel)]="TaskDescription"
+                  #dtype="ngModel"
+                  class="form-control"
+                  placeholder="Enter Description"
+                  name="description"
+                  data-val="true"
+                  data-val-required="The Description field is required."
+                  required
+                />
+                <div *ngIf="dtype.touched && dtype.invalid" class="text-danger">
+                  <small *ngIf="dtype.errors.required">
+                    <li>Description is required.</li>
+                  </small>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="des"><b>Start Date:</b></label>
+                <input
+                  type="date"
+                  [(ngModel)]="TaskStartDate"
+                  #stype="ngModel"
+                  class="form-control"
+                  name="sdate"
+                  data-val="true"
+                  data-val-required="The Start Date field is required."
+                  required
+                />
+                <div *ngIf="stype.touched && stype.invalid" class="text-danger">
+                  <small *ngIf="stype.errors.required">
+                    <li>Start Date is required.</li>
+                  </small>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="des"><b>End Date:</b></label>
+                <input
+                  type="date"
+                  [(ngModel)]="TaskEndDate"
+                  #etype="ngModel"
+                  class="form-control"
+                  name="edate"
+                  data-val="true"
+                  data-val-required="The End Date field is required."
+                  required
+                />
+                <div *ngIf="etype.touched && etype.invalid" class="text-danger">
+                  <small *ngIf="etype.errors.required">
+                    <li>End Date is required.</li>
+                  </small>
+                </div>
+              </div>
+
+              <div class="form-group" *ngIf="!EditTaskFlag">
+                <label for="people"><b></b></label>
+                <ng-select
+                  [items]="items"
+                  bindLabel="Name"
+                  placeholder="Select Team Members"
+                  appendTo="body"
+                  name="selected"
+                  [multiple]="true"
+                  [(ngModel)]="selected"
+                  (change)="getValues()"
+                >
+                </ng-select>
+              </div>
+
+              <div
+                class="modal-footer"
+                style="display: flex; justify-content: center"
+              >
+                <input type="submit" [disabled]="!addtask.valid" />
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  data-dismiss="modal"
+                >
+                  Close
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal View Card Detail -->
+    <div id="myModal1" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4>Card Detail</h4>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-4">
+                <b><h5>Title:</h5></b>
+              </div>
+              <div class="col-8" *ngIf="ModalFlag">
+                <p>{{ this.ModalTask.TaskName }}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                <b><h5>Description :</h5></b>
+              </div>
+              <div class="col-8" *ngIf="ModalFlag">
+                <p>
+                  {{ this.ModalTask.TaskDescription }}
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                <b><h5>People :</h5></b>
+              </div>
+              <div class="col-8" *ngIf="ModalFlag">
+                <ul *ngFor="let s of ModalTask.PeopleAdded">
+                  <li class="listindex">
+                    <div class="ModalDetailCard">
+                      <img class="test1" src="../../assets/img/Letter.png" />
+                      <h6 style="padding-left: 5px; padding-top: 5px">
+                        {{ s }}
+                      </h6>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div
+            class="modal-footer"
+            style="display: flex; justify-content: center"
+          >
+            <button
+              style="display: flex"
+              class="btn btn-success"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+
+            <div style="display: flex; justify-content: flex-end">
+              <button
+                class="btn btn-primary"
+                style="margin: 5px"
+                data-toggle="modal"
+                data-dismiss="modal"
+                data-target="#myModal"
+                (click)="OnEditTask()"
+              >
+                Edit
+              </button>
+              <button
+                class="btn btn-danger"
+                style="margin: 5px"
+                data-dismiss="modal"
+                data-toggle="modal"
+                data-target="#deletetask"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Delete Modal of Task-->
+    <div
+      class="modal fade"
+      id="deletetask"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Ready to Delete a Task?
+            </h5>
+            <button
+              class="close"
+              type="button"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Select "Delete" below if you are ready to delete Task.
+          </div>
+          <div class="modal-footer">
+            <button
+              class="btn btn-secondary"
+              type="button"
+              data-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <a class="btn btn-primary" (click)="onDeleteTask()"
+              >Delete</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="src/app/js/dragdownswap.js"></script>
+    <script>
+      $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+      });
+    </script>
+    <!-- <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script src="http://code.jquery.com/jquery-x.x.x.min.js"></script>
+    <script src="jquery.touch.min.js"></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script> -->
+  </body>
+</html>

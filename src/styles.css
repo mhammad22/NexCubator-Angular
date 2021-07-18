@@ -1,0 +1,8 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* @import "mystylesheet.css"; */
+@import url("https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css");
+@import "../src/app/vendor/fontawesome-free/css/all.min.css";
+/* @import url('https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css'); */
+
+/* @import "all.min.css"; */

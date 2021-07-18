@@ -1,0 +1,67 @@
+.slide_controls{
+    background-color: black;
+    opacity: 0.2;
+}
+
+.slide_controls:hover{
+    opacity: 0.7;
+}
+
+
+
+#slider{
+    position: relative;
+    overflow: hidden;
+    margin: 20px auto 0 auto;
+    border-radius: 4px;
+}
+#slider ul{
+    position: relative;
+    margin: 0;
+    padding: 0;
+    height: 200px;
+    list-style: none;
+}
+#slider ul li{
+    position: relative;
+    display: block;
+    float: left;
+    margin: 0;
+    padding: 0;
+    width: 900px;
+    height: 500px;
+    text-align: center;
+    line-height: 500px;
+}
+a.control_prev, a.control_next{
+    position: absolute;
+    top: 40%;
+    z-index: 999;
+    display: block;
+    padding: 4% 3%;
+    height: auto;
+    width: auto;
+    background: black;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 18px;
+    opacity: 0.8;
+    cursor: pointer;
+}
+a.control_prev:hover, a.control_next:hover{
+    opacity: 1;
+}
+a.control_prev{
+    border-radius: 0 2px 2px 0;
+}
+a.control_next{
+    right: 0;
+    border-radius: 2px 0 0 2px; 
+}
+.slider_option{
+    position: relative;
+    margin: 10px auto;
+    width: 160px;
+    font-size: 18px;
+}

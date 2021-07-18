@@ -1,0 +1,120 @@
+<div class="container">
+  <hr />
+  <h3 class="text-center"><b>Startup Pitch</b></h3>
+  <hr />
+  <div class="card bg-light border-info">
+    <div class="card-body">
+      <div class="user" style="align-items: center">
+        <!-- <h4>Startup Pitch</h4> -->
+
+        <div class="card bg-light border-0">
+          <form #pitchform="ngForm" (ngSubmit)="onClickSubmit()">
+            <div class="form-group">
+              <label for="problemStatement">Problem Statement</label>
+              <input
+                [(ngModel)]="problemStatement"
+                #pst="ngModel"
+                type="text"
+                class="form-control"
+                id="problemStatement"
+                name="problemStatement"
+                required
+              />
+              <div *ngIf="pst.invalid && pst.touched">
+                <small *ngIf="pst.errors?.required" class="text-danger"
+                  >Problem Statement is required</small
+                >
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="sol">Proposed Solution</label>
+              <input
+                [(ngModel)]="proposedSolution"
+                #ps="ngModel"
+                type="text"
+                class="form-control"
+                id="sol"
+                name="sol"
+                required
+              />
+              <div *ngIf="ps.invalid && ps.touched">
+                <small *ngIf="ps.errors?.required" class="text-danger"
+                  >Proposed Solution is required</small
+                >
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label" for="value-proposition"
+                >Value Proposition:</label
+              >
+              <input
+                [(ngModel)]="valueProposition"
+                #vp="ngModel"
+                type="text"
+                class="form-control"
+                id="value"
+                name="value"
+                required
+              />
+              <div *ngIf="vp.invalid && vp.touched">
+                <small *ngIf="vp.errors?.required" class="text-danger"
+                  >Value Proposition is required</small
+                >
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="marketplan">Market Plan:</label>
+              <input
+                [(ngModel)]="marketPlan"
+                #mp="ngModel"
+                type="text"
+                class="form-control"
+                id="marketplan"
+                name="marketplan"
+                required
+              />
+              <div *ngIf="mp.invalid && mp.touched">
+                <small *ngIf="mp.errors?.required" class="text-danger"
+                  >Market Plan is required</small
+                >
+              </div>
+            </div>
+
+            <div class="form-group">
+              <input
+                type="hidden"
+                name="Startup"
+                id="Startup"
+                value="@ViewBag.StartupId"
+              />
+            </div>
+
+            <div class="form-group" *ngIf="!EditPitch">
+              <div class="col-md-offset-2 col-md-10">
+                <input
+                  type="submit"
+                  [disabled]="!pitchform.valid"
+                  value="Create"
+                  class="btn btn-outline-primary"
+                />
+              </div>
+            </div>
+            <div class="form-group" *ngIf="EditPitch">
+              <div class="col-md-offset-2 col-md-10">
+                <input
+                  type="submit"
+                  [disabled]="!pitchform.valid"
+                  value="Update"
+                  class="btn btn-outline-primary"
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,105 @@
+<div class="container">
+  <hr />
+  <h3 class="text-center"><b>Project Information</b></h3>
+  <hr />
+
+  <div class="card bg-light border-info">
+    <div class="card-body">
+      <div class="user" style="align-items: center">
+        <!-- <h4>Project Information</h4> -->
+        <!-- <hr /> -->
+        <div class="card bg-light border-0">
+          <form
+            class="user"
+            #projectinfo="ngForm"
+            (ngSubmit)="onClickSubmit(projectinfo.value)"
+          >
+            <div class="form-group">
+              <label for="name">Title</label>
+              <input
+                [(ngModel)]="title"
+                #t="ngModel"
+                type="text"
+                class="form-control"
+                id="name"
+                name="name"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="desc">Description</label>
+              <input
+                [(ngModel)]="description"
+                #d="ngModel"
+                type="text"
+                class="form-control"
+                id="desc"
+                name="desc"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="funds">Funds Required</label>
+              <input
+                [(ngModel)]="fundRequired"
+                #fr="ngModel"
+                type="text"
+                class="form-control"
+                id="funds"
+                name="funds"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <input type="hidden" name="Startup" value="@ViewBag.StartupId" />
+            </div>
+
+            <div class="form-group">
+              <ng-select
+                [items]="items"
+                bindLabel="Name"
+                placeholder="Select Team Members"
+                appendTo="body"
+                name="selected"
+                [multiple]="true"
+                [(ngModel)]="selected"
+                [disabled]="EditProject"
+                (change)="getValues()"
+              >
+              </ng-select>
+            </div>
+
+            <div class="form-group" *ngIf="!EditProject">
+              <div class="col-md-offset-2 col-md-10">
+                <input
+                  type="submit"
+                  value="Create"
+                  [disabled]="!projectinfo.valid"
+                  class="btn btn-outline-primary"
+                />
+              </div>
+            </div>
+
+            <div class="form-group" *ngIf="EditProject">
+              <div class="col-md-offset-2 col-md-10">
+                <input
+                  type="submit"
+                  value="Update"
+                  [disabled]="!projectinfo.valid"
+                  class="btn btn-outline-primary"
+                />
+              </div>
+            </div>
+
+
+          </form>
+        </div>
+      </div>
+
+      <!-- } -->
+    </div>
+  </div>
+</div>

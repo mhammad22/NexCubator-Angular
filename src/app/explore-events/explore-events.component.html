@@ -1,0 +1,91 @@
+<div class="container">
+  <a
+    href="main-navbar/addevent"
+    style="float: right"
+    type="button"
+    class="btn btn-outline-success"
+    >Add Your Event
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      fill="currentColor"
+      class="bi bi-calendar-event"
+      viewBox="0 0 16 16"
+    >
+      <path
+        d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"
+      />
+      <path
+        d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"
+      />
+    </svg>
+  </a>
+  <a
+    href="main-navbar/event-details"
+    style="font-size: 30px"
+    role="button"
+    class="btn btn-light"
+    >Explore Events
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="30"
+      height="25"
+      fill="currentColor"
+      class="bi bi-calendar3-event"
+      viewBox="0 0 16 16"
+    >
+      <path
+        d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"
+      />
+      <path d="M12 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+    </svg>
+  </a>
+  <br />
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 py-3">
+        <ngb-carousel *ngIf="EventsList">
+          <ng-template ngbSlide *ngFor="let event of EventsList">
+            <img
+              src="{{ event.CoverImage }}"
+              alt="Random slide"
+              style="
+                width: inherit;
+                margin: 10px;
+                height: 450px;
+                border-radius: 10px;
+                border: 2px solid red;
+                display: flex;
+                justify-content: space-around;
+                opacity: 0.7;
+              "
+            />
+            <div
+              class="carousel-caption"
+              style="
+                backface-visibility: hidden;
+                padding: 0px;
+                margin: 0px;
+                background-color: rgb(172, 233, 74);
+                border-radius: 10px;
+                border: 2px solid black;
+                color: black;
+              "
+            >
+              <h3>
+                <a
+                  style="color: black"
+                  href="main-navbar/event-details/{{ event.EventId }}"
+                  >{{ event.Name }}</a
+                >
+              </h3>
+              <p>{{ event.Description }}</p>
+            </div>
+          </ng-template>
+        </ngb-carousel>
+      </div>
+    </div>
+  </div>
+</div>

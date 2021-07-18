@@ -1,0 +1,128 @@
+<style>
+    .panel {
+        border: 1px solid #f4511e;
+        border-radius: 0;
+        transition: box-shadow 0.5s;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    
+    .panel:hover {
+        box-shadow: 5px 0px 40px rgba(0, 0, 0, .2);
+    }
+    
+    .panel-heading {
+        color: #fff !important;
+        background-color: #f4511e !important;
+        padding: 25px;
+        border-bottom: 1px solid transparent;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+    }
+    
+    .panel-body {
+        padding: 15px;
+        box-sizing: border-box;
+    }
+    
+    .panel-footer {
+        background-color: white !important;
+        padding: 10px 15px;
+        border-top: 1px solid #ddd;
+        border-bottom-right-radius: 3px;
+        border-bottom-left-radius: 3px;
+        box-sizing: border-box;
+    }
+</style>
+
+<div class="container-fluid">
+    <br>
+    <h2 style="color:black;">Our Services</h2>
+
+    <hr>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-sm-4 col-xs-12">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3>Project Management</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>
+                            The Project Management module translates task level planning into high-level resourcing in one click, keeping project teams, resource managers, and executives on the same page. Its powerful tools help measure and maximize the effectiveness of your project
+                            managers.
+                        </p>
+                    </div>
+                    <div class="panel-footer">
+                        <h3 style="color:turquoise;">$15*</h3>
+                        <h5>per month</h5>
+                        <br />
+                        <input type="submit" class="btn btn-lg btn-warning" (click)="buyProjectManagement()" value="Register"/>
+                        <!-- <small>*Recurring payments charged!</small> -->
+                    </div>
+                    <small>*Recurring payments charged!</small>
+                </div>
+            </div>
+            <div class="col-sm-4 col-xs-12">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3>Event Management</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>
+                            The user will be able to set up and see different listings of the events. Events will be added by the startups for advertisments. It can also be added in order to get the reach for the startup. Investors will attend these events to look for potential
+                            investments in these startups.
+                        </p>
+                    </div>
+                    <div class="panel-footer">
+                        <h3 style="color:turquoise;">$15*</h3>
+                        <h5>per month</h5>
+                        <br />
+                        <input type="submit" class="btn btn-lg btn-warning" (click)="buyEventManagement()"  value="Register"/>
+                        <!-- <small>*Recurring payments charged!</small> -->
+                    </div>
+                    <small>*Recurring payments charged!</small>
+                </div>
+            </div>
+            <div class="col-sm-4 col-xs-12">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3>Digital Marketing</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>
+                            Digital marketing service encompasses all marketing efforts that use an electronic device. Businesses leverage digital channels such as search engines, social media, SEO, Advertisements, email, and other websites to connect with current and prospective
+                            and potential customers.
+                        </p>
+                    </div>
+                    <div class="panel-footer">
+                        <h3 style="color:turquoise;">$20*</h3>
+                        <h5>per month</h5>
+                        <br />
+                        <input type="submit" class="btn btn-lg btn-warning" (click)="buyDigitalMarketing()"  value="Register"/>
+                        <!-- <small>*Recurring payments charged!</small> -->
+                    </div>
+                    <small>*Recurring payments charged!</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        document.getElementById("HomePage").classList.remove("active");
+        document.getElementById("ExploreStartup").classList.remove("active");
+        document.getElementById("Services").classList.remove("active");
+        document.getElementById("Support").classList.remove("active");
+        document.getElementById("Setting").classList.remove("active");
+        var x = document.getElementById("ViewServices").classList.add("active");
+    });
+</script>

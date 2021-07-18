@@ -1,0 +1,75 @@
+<div class="container">
+  <h4>Pitch by {{startupname}}</h4>
+  <hr />
+  <div class="">
+    <div class="card shadow m-1" style="width: 100%">
+      <div class="card-body">
+        <table class="table table-stripped">
+          <tbody>
+            <tr>
+              <td><b>Problem Statement</b></td>
+              <td>{{ ProblemStatement }}</td>
+            </tr>
+            <tr>
+              <td><b>Proposed Solution</b></td>
+              <td>{{ ProposedSolution }}</td>
+            </tr>
+            <tr>
+              <td><b>Value Proposition</b></td>
+              <td>{{ ValueProposition }}</td>
+            </tr>
+            <tr>
+              <td><b>Market Plan</b></td>
+              <td>{{ MarketPlan }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <hr />
+
+  <div class="container">
+    <div class="card bg-light border-info">
+      <div class="card-body">
+        <div class="card bg-light border-0">
+          <form class="user" #initiate="ngForm" (ngSubmit)="onClickSubmit()">
+            <div class="form-group">
+              <label for="name">Interested? Drop a message!</label>
+
+              <textarea
+                [(ngModel)]="message"
+                class="form-control"
+                #nm="ngModel"
+                data-val="true"
+                data-val-required="The Message field is required."
+                id="message"
+                name="message"
+                placeholder="Please type message here..."
+                rows="4"
+                required
+              ></textarea>
+              <div *ngIf="nm.touched && nm.invalid" class="text-danger">
+                <small *ngIf="nm.errors.required">
+                  The Message field is required.
+                </small>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-offset-2 col-md-10">
+                <input
+                  type="submit"
+                  value="Send"
+                  [disabled]="!initiate.valid"
+                  class="btn btn-outline-primary"
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,122 @@
+<div class="container">
+  <div class="card bg-light border-info">
+    <div class="card-body">
+      <div class="user" style="align-items: center">
+        <h4>Payment Information</h4>
+        <hr />
+
+        <div class="card bg-light border-0 text-center" style="opacity: 0.8;" *ngIf="!flag">
+          <h5>Payment Method already added!</h5>
+          <div class="text-center">
+          <a
+            href="main-navbar/settings"
+            class="btn btn-dark m-1"
+            style="width: 200px;"
+            >View Payment Method</a
+              >    
+            </div>
+        </div>
+
+
+        <div class="card bg-light border-0" *ngIf="flag">
+          <form
+            class="user"
+            #addpay="ngForm"
+            (ngSubmit)="onClickSubmit(addpay.value)"
+          >
+            <div class="form-group">
+              <label for="name">Card Number</label>
+              <input
+                [(ngModel)]="cardNum"
+                #t="ngModel"
+                type="text"
+                class="form-control"
+                id="name"
+                placeholder="0000000000000000"
+                name="cardnum"
+                required
+              />
+            </div>
+
+            <select
+              [(ngModel)]="selectedMonth"
+              #ctype="ngModel"
+              class="form-control"
+              data-val="true"
+              style="max-width: inherit"
+              data-val-required="The Month field is required."
+              name="Month"
+              id="Month"
+              required
+            >
+              <option [ngValue]="undefined" selected disabled>
+                Select Expiry Month
+              </option>
+              <option *ngFor="let c of month">
+                {{ c.id }}
+              </option>
+            </select>
+            <div *ngIf="ctype.touched && ctype.invalid" class="text-danger">
+              <small *ngIf="ctype.errors.required">
+                <li>Month is required.</li>
+              </small>
+            </div>
+            <br />
+
+            <select
+            [(ngModel)]="selectedYear"
+            #syr="ngModel"
+            class="form-control"
+            data-val="true"
+            style="max-width: inherit"
+            data-val-required="The Year field is required."
+            name="Year"
+            id="Year"
+            required
+          >
+            <option [ngValue]="undefined" selected disabled>
+              Select Expiry Year
+            </option>
+            <option *ngFor="let c of year">
+              {{ c.name }}
+            </option>
+          </select>
+          <div *ngIf="syr.touched && syr.invalid" class="text-danger">
+            <small *ngIf="syr.errors.required">
+              <li>Year is required.</li>
+            </small>
+          </div>
+          <br />
+
+            <div class="form-group">
+              <label for="funds">CVV</label>
+              <input
+                [(ngModel)]="cvc"
+                #fr="ngModel"
+                type="text"
+                class="form-control"
+                id="cvc"
+                placeholder="000"
+                name="cvc"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-offset-2 col-md-10">
+                <input
+                  type="submit"
+                  value="Add Payment Method"
+                  [disabled]="!addpay.valid"
+                  class="btn btn-outline-primary"
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- } -->
+    </div>
+  </div>
+</div>

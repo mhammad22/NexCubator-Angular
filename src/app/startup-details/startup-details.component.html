@@ -1,0 +1,558 @@
+<!-- <app-startup-details-overview></app-startup-details-overview>
+<app-startup-details-team></app-startup-details-team>
+<app-startup-details-projects></app-startup-details-projects>
+<app-startup-details-pitch></app-startup-details-pitch> -->
+
+<hr />
+<h3 class="text-center"><b>Startup Details</b></h3>
+<hr />
+
+<!-- 1 -->
+<div class="container">
+  <div class="d-flex justify-content-center">
+    <div class="card shadow" style="width: 100%">
+      <div class="card-body">
+        <div class="d-flex flex-row align-items-center justify-content-between">
+          <h4 class="card-title">
+            <b>{{ StartupDetailObj?.Name }}</b>
+          </h4>
+          <div class="dropdown no-arrow float-right" *ngIf="!isUserRoleCheck">
+            <a
+              class="dropdown-toggle"
+              href="#"
+              role="button"
+              id="dropdownMenuLink"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+            </a>
+            <div
+              class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+              aria-labelledby="dropdownMenuLink"
+            >
+              <div class="dropdown-header">Options</div>
+              <div class="dropdown-divider"></div>
+              <a
+                class="dropdown-item"
+                href="main-navbar/edit-startup/{{ this.startupid }}"
+                >Edit</a
+              >
+              <a
+                class="dropdown-item"
+                data-toggle="modal"
+                data-target="#deleteStartupModal"
+                >Delete</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4 col-md-6">
+            <div class="d-flex justify-content-center">
+              <img
+                class="align-middle"
+                src="{{ StartupDetailObj?.StartupLogo }}"
+                style="width: 200px; height: 200px"
+              />
+            </div>
+          </div>
+          <div class="col-sm-8 col-md-6">
+            <div class="card-text table-responsive">
+              <!-- <br /><b>Location:</b>{{ StartupDetailObj?.Location }}
+              <br />
+              <b>Email Address:</b>{{ StartupDetailObj?.Email }}
+              <br />
+              <b>Domain:</b>{{ StartupDetailObj?.Technology }}
+              <br />
+              <b>Description:</b> {{ StartupDetailObj?.Description }}
+              <br />
+              <b>Funding Required:</b> {{ StartupDetailObj?.Funding }} -->
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><b>Name</b></td>
+                    <td>{{ StartupDetailObj?.Name }}</td>
+                  </tr>
+                  <tr>
+                    <td><b>Email Adress</b></td>
+                    <td>{{ StartupDetailObj?.Email }}</td>
+                  </tr>
+                  <tr>
+                    <td><b>Domain</b></td>
+                    <td>{{ StartupDetailObj?.Technology }}</td>
+                  </tr>
+                  <tr>
+                    <td><b>Description</b></td>
+                    <td>{{ StartupDetailObj?.Description }}</td>
+                  </tr>
+                  <tr>
+                    <td><b>Funds Required</b></td>
+                    <td>{{ StartupDetailObj?.Funding }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div *ngIf="!isUserRoleCheck">
+              <a
+                href="main-navbar/project/{{ this.startupid }}"
+                class="btn btn-dark float-right m-1"
+                >Add Project</a
+              >
+              <!-- <a href="#" class="btn btn-dark float-right m-1">Add Event</a> -->
+              <a
+                href="main-navbar/TeamMember/{{ this.startupid }}"
+                class="btn btn-dark float-right m-1"
+                >Add Team Member</a
+              >
+              <a
+                href="main-navbar/pitch/{{ this.startupid }}"
+                class="btn btn-dark float-right m-1"
+                >Add Pitch</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 2 -->
+<div class="container">
+  <hr />
+  <h4>Startup Team</h4>
+  <hr />
+  <div class="">
+    <div class="row">
+      <div class="col-sm-12 col-md-6" *ngFor="let s of StartupTeamObj">
+        <div class="card shadow m-1" style="width: 100%">
+          <div class="card-body">
+            <div class="row">
+              <div
+                class="
+                  col-sm-12 col-md-6
+                  d-flex
+                  justify-content-center
+                  align-middle
+                "
+              >
+                <img
+                  src="../../assets/img/undraw_profile_1.svg"
+                  style="height: 100px; width: 100px"
+                />
+              </div>
+              <div class="col-sm-12 col-md-6 my-auto">
+                <div
+                  class="dropdown no-arrow float-right"
+                  *ngIf="!isUserRoleCheck"
+                >
+                  <a
+                    class="dropdown-toggle"
+                    href="#"
+                    role="button"
+                    id="dropdownMenuLink"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                  </a>
+                  <div
+                    class="
+                      dropdown-menu dropdown-menu-right
+                      shadow
+                      animated--fade-in
+                    "
+                    aria-labelledby="dropdownMenuLink"
+                  >
+                    <div class="dropdown-header">Options</div>
+                    <div class="dropdown-divider"></div>
+                    <a
+                      class="dropdown-item"
+                      href="main-navbar/edit-member/{{ this.startupid }}/{{
+                        s.MemberId
+                      }}"
+                      >Edit</a
+                    >
+                    <a
+                      class="dropdown-item"
+                      data-toggle="modal"
+                      data-target="#deleteTeamMember"
+                      (click)="onDelete(s.MemberId, this.startupid)"
+                      >Delete</a
+                    >
+                  </div>
+                </div>
+                <b>Name: </b> {{ s.Name }}
+                <br />
+                <b>Location:</b> {{ s.Location }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 3 -->
+<div class="container">
+  <hr />
+  <h4>Projects</h4>
+  <hr />
+  <div class="">
+    <div class="row">
+      <div class="col-sm-12 col-md-6" *ngFor="let s of StartupProjectObj">
+        <div class="card shadow m-1" style="width: 100%">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-12 col-md-12">
+                <div
+                  class="
+                    d-flex
+                    flex-row
+                    align-items-center
+                    justify-content-between
+                  "
+                >
+                  <h3>
+                    <b>{{ s.Title }}</b>
+                  </h3>
+                  <div
+                    class="dropdown no-arrow float-right"
+                    *ngIf="!isUserRoleCheck"
+                  >
+                    <a
+                      class="dropdown-toggle"
+                      href="#"
+                      role="button"
+                      id="dropdownMenuLink"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      <i
+                        class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"
+                      ></i>
+                    </a>
+                    <div
+                      class="
+                        dropdown-menu dropdown-menu-right
+                        shadow
+                        animated--fade-in
+                      "
+                      aria-labelledby="dropdownMenuLink"
+                    >
+                      <div class="dropdown-header">Options</div>
+                      <div class="dropdown-divider"></div>
+                      <a
+                        class="dropdown-item"
+                        href="main-navbar/edit-project/{{ this.startupid }}/{{
+                          s.ProjectId
+                        }}"
+                        >Edit</a
+                      >
+                      <a
+                        class="dropdown-item"
+                        data-toggle="modal"
+                        data-target="#deleteproject"
+                        (click)="onDeleteP(s.ProjectId, this.startupid)"
+                        >Delete</a
+                      >
+                    </div>
+                  </div>
+                </div>
+                <br />
+                <!-- <br />
+                <b>Funding Required:</b>
+                <p>{{ s?.FundsRequired }}</p>
+                <b>Description:</b>
+                <p>{{ s?.Description }}</p> -->
+
+                <table class="table table-stripped">
+                  <tbody>
+                    <tr>
+                      <td><b>Funding Required:</b></td>
+                      <td>{{ s?.FundsRequired }}</td>
+                    </tr>
+                    <tr>
+                      <td><b>Description:</b></td>
+                      <td>{{ s?.Description }}</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <b>Team:</b>
+                      </td>
+                      <td>
+                        <li *ngFor="let t of s.member">{{ t }}</li>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 4 -->
+<div class="container">
+  <hr />
+  <h4>Startup Pitch</h4>
+  <hr />
+  <div class="">
+    <div class="card shadow m-1" style="width: 100%">
+      <div class="card-body">
+        <div
+          class="dropdown no-arrow float-right justify-content-right"
+          *ngIf="!isUserRoleCheck"
+        >
+          <a
+            class="dropdown-toggle"
+            href="#"
+            role="button"
+            id="dropdownMenuLink"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+          </a>
+          <div
+            class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+            aria-labelledby="dropdownMenuLink"
+          >
+            <div class="dropdown-header">Options</div>
+            <div class="dropdown-divider"></div>
+            <a
+              class="dropdown-item"
+              href="main-navbar/edit-pitch/{{ this.startupid }}"
+              >Edit</a
+            >
+            <a
+              class="dropdown-item"
+              data-toggle="modal"
+              data-target="#deletePitch"
+              href="#"
+              >Delete</a
+            >
+          </div>
+        </div>
+
+        <table class="table table-stripped">
+          <tbody>
+            <tr>
+              <td><b>Problem Statement</b></td>
+              <td>{{ StartupPitchObj?.ProblemStatement }}</td>
+            </tr>
+            <tr>
+              <td><b>Proposed Solution</b></td>
+              <td>{{ StartupPitchObj?.ProposedSolution }}</td>
+            </tr>
+            <tr>
+              <td><b>Value Proposition</b></td>
+              <td>{{ StartupPitchObj?.ValueProposition }}</td>
+            </tr>
+            <tr>
+              <td><b>Market Plan</b></td>
+              <td>{{ StartupPitchObj?.MarketPlan }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- <div class="d-flex flex-row align-items-center justify-content-between">
+          <b>Problem Statement: </b>
+          <div class="dropdown no-arrow float-right">
+            <a
+              class="dropdown-toggle"
+              href="#"
+              role="button"
+              id="dropdownMenuLink"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+            </a>
+            <div
+              class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+              aria-labelledby="dropdownMenuLink"
+            >
+              <div class="dropdown-header">Options</div>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="\add-pitch-form">Edit</a>
+              <a class="dropdown-item" href="#">Delete</a>
+            </div>
+          </div>
+        </div>
+        <p>{{ StartupPitchObj?.ProblemStatement }}</p>
+        <br />
+        <b>Proposed Solution: </b>
+        <p>{{ StartupPitchObj?.ProposedSolution }}</p>
+        <br />
+        <b>Value Proposition: </b>
+        <p>{{ StartupPitchObj?.ValueProposition }}</p>
+        <br />
+        <b>Market Plan: </b>
+        <p>{{ StartupPitchObj?.MarketPlan }}</p>
+        <br /> -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Modal of Startup-->
+  <div
+    class="modal fade"
+    id="deleteStartupModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            Ready to Delete a Startup?
+          </h5>
+          <button
+            class="close"
+            type="button"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Select "Delete" below if you are ready to delete Startup.
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">
+            Cancel
+          </button>
+          <a class="btn btn-primary" (click)="onDeleteStartup()">Delete</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Modal of Team Member-->
+  <div
+    class="modal fade"
+    id="deleteTeamMember"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            Ready to Delete a Team Member?
+          </h5>
+          <button
+            class="close"
+            type="button"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Select "Delete" below if you are ready to delete Team Member.
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">
+            Cancel
+          </button>
+          <a class="btn btn-primary" (click)="onDeleteTeamMember()">Delete</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Modal of Projects-->
+  <div
+    class="modal fade"
+    id="deleteProject"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            Ready to Delete a Project?
+          </h5>
+          <button
+            class="close"
+            type="button"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Select "Delete" below if you are ready to delete Project.
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">
+            Cancel
+          </button>
+          <a class="btn btn-primary" (click)="onDeleteProject()">Delete</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Modal of Pitch-->
+  <div
+    class="modal fade"
+    id="deletePitch"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            Ready to Delete a Pitch?
+          </h5>
+          <button
+            class="close"
+            type="button"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Select "Delete" below if you are ready to delete Pitch.
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">
+            Cancel
+          </button>
+          <a class="btn btn-primary" (click)="onDeletePitch(this.startupid)"
+            >Delete</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

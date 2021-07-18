@@ -1,0 +1,82 @@
+<div class="container">
+    <h3><i class="fas fa-user-circle"></i> Personal Information</h3>
+    <hr>
+    <div class="card border-info">
+        <div class="card-body">
+            <div class="my-auto">
+
+                <b>Name: </b><br />
+
+                <br />
+                <b>Gender: </b><br />
+
+                <br />
+                <b>Nationality: </b><br />
+
+                <br />
+                <b>Email: </b><br />
+                <br />
+                <b>Phone: </b><br />
+            </div>
+            <br>
+            <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#myModal">Edit Profile</button>
+        </div>
+    </div>
+</div>
+
+
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Info</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form name="myform" action="#" class="needs-validation" novalidate>
+                    <div class="form-group">
+                        <label for="name">Full name:</label>
+                        <input type="text" class="form-control" id="mname" placeholder="" name="Name" value="Name" required>
+
+                        <div class="valid-feedback"></div>
+                        <div class="invalid-feedback"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pprice">Gender:</label>
+                        <input type="text" class="form-control" id="pprice" placeholder="" name="Gender" value="Gender" required>
+                        <div class="valid-feedback"></div>
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity">Nationality:</label>
+                        <input type="text" class="form-control" id="quantity" placeholder="" value="Nationality" name="Nationality" required>
+                        <div class="valid-feedback"></div>
+                        <div class="invalid-feedback"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="vname">Email:</label>
+                        <input type="text" class="form-control" id="vname" placeholder="" value="Email" name="Email" required>
+                        <div class="valid-feedback"></div>
+                        <div class="invalid-feedback"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="vvname">Phone no:</label>
+                        <input type="text" class="form-control" id="vvname" placeholder="" value="Phone" name="Phone" required>
+                        <div class="valid-feedback"></div>
+                        <div class="invalid-feedback"></div>
+                    </div>
+                </form>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" id="additem" class="btn btn-primary" data-dismiss="modal">Save Changes</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,86 @@
+<body class="bg-gradient-primary">
+  <div class="container">
+    <!-- Outer Row -->
+    <div class="row justify-content-center">
+      <div class="col-xl-10 col-lg-12 col-md-9">
+        <div class="card o-hidden border-0 shadow-lg my-5">
+          <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+              <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+              <div class="col-lg-6">
+                <div class="p-5">
+                  <div class="text-center">
+                    <h1 class="h4 text-gray-900 mb-4"><b>NexCubator</b></h1>
+                    <h1 class="h4 text-gray-900 mb-4">Set a Role!</h1>
+                  </div>
+
+                  <form
+                class="user"
+                #signuprole="ngForm"
+                (ngSubmit)="onClickSubmit(signuprole.value)"
+              >
+                <select
+                  [(ngModel)]="userType"
+                  #ctype="ngModel"
+                  class="form-control"
+                  data-val="true"
+                  style="max-width: inherit"
+                  data-val-required="The Role field is required."
+                  name="Category"
+                  id="Category"
+                  required
+                >
+                  <option [ngValue]="undefined" selected disabled>
+                    Select Type
+                  </option>
+                  <option *ngFor="let c of type">
+                    {{ c.name }}
+                  </option>
+                </select>
+                <div *ngIf="ctype.touched && ctype.invalid" class="text-danger">
+                  <small *ngIf="ctype.errors.required">
+                    Role is required.
+                  </small>
+                </div>
+                <br />
+                <div class="row">
+                  <div class="col-sm-12 form-group">
+                    <input
+                      [disabled]="!signuprole.valid"
+                      type="submit"
+                      class="btn btn-primary btn-user btn-block"
+                      value="Register"
+                    />
+                  </div>
+                </div>
+              </form>
+                  <!-- <iframe style="display:none;" src="https://localhost:44352/Login.html" id="ifr"></iframe> -->
+                  <!-- <button (click)="signOutTemporary()">
+                      Sign Out Temporary
+                    </button> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="~/vendor/jquery/jquery.min.js"></script>
+  <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="~/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <script>
+    window.addEventListener("message", function (message) {
+      alert(message.data);
+    });
+  </script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="~/js/sb-admin-2.min.js"></script>
+</body>

@@ -1,0 +1,144 @@
+<div class="container">
+  <hr />
+  <h3 class="text-center"><b>Member Information</b></h3>
+  <hr />
+  <div class="card bg-light border-info">
+    <div class="card-body">
+      <div class="user" style="align-items: center">
+        <!-- <h4>Member Information</h4> -->
+        <!-- <hr /> -->
+        <div class="card bg-light border-0">
+          <form #teamform="ngForm" (ngSubmit)="onClickSubmit()">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input
+                [(ngModel)]="name"
+                #n="ngModel"
+                type="text"
+                class="form-control"
+                id="name"
+                placeholder="Shehzar Iftikhar"
+                name="name"
+                required
+              />
+              <div *ngIf="n.invalid && n.touched">
+                <small *ngIf="n.errors?.required" class="text-danger"
+                  >Name is required</small
+                >
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="location">Location</label>
+              <input
+                [(ngModel)]="location"
+                #l="ngModel"
+                type="text"
+                class="form-control"
+                id="location"
+                placeholder="Lahore"
+                name="location"
+                required
+              />
+              <div *ngIf="l.invalid && l.touched">
+                <small *ngIf="l.errors?.required" class="text-danger"
+                  >Location is required</small
+                >
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                [(ngModel)]="email"
+                #e="ngModel"
+                type="text"
+                class="form-control"
+                id="email"
+                placeholder="notifyshehzar@gmail.com"
+                name="email"
+                required
+                pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+              />
+              <div *ngIf="e.invalid && e.touched">
+                <small *ngIf="e.errors?.required" class="text-danger"
+                  >Email is required</small
+                >
+                <small *ngIf="e.errors?.pattern" class="text-danger"
+                  >Please provide a valid email address</small
+                >
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="designation">Designation</label>
+              <input
+                [(ngModel)]="designation"
+                #d="ngModel"
+                type="text"
+                class="form-control"
+                id="designation"
+                placeholder="Front End Developer"
+                name="designation"
+                required
+              />
+              <div *ngIf="d.invalid && d.touched">
+                <small *ngIf="d.errors?.required" class="text-danger"
+                  >Designation is required</small
+                >
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="linkedin">LinkedIn Profile</label>
+              <input
+                [(ngModel)]="linkedin"
+                #li="ngModel"
+                type="text"
+                class="form-control"
+                id="linkedin"
+                placeholder="linkedin.com/shehzarr"
+                name="linkedin"
+              />
+              <!-- <div *ngIf="li.invalid && li.touched">
+                <small *ngIf="li.errors?.required" class="text-danger"
+                  >Linkedin Profile is required</small
+                >
+              </div> -->
+            </div>
+
+            <div class="form-group">
+              <input
+                type="hidden"
+                name="Startup"
+                id="Startup"
+                value="@ViewBag.StartupId"
+              />
+            </div>
+
+            <div class="form-group" *ngIf="!EditMember">
+              <div class="col-md-offset-2 col-md-10">
+                <input
+                  type="submit"
+                  [disabled]="!teamform.valid"
+                  value="Create"
+                  class="btn btn-outline-info"
+                />
+              </div>
+            </div>
+            <div class="form-group" *ngIf="EditMember">
+              <div class="col-md-offset-2 col-md-10">
+                <input
+                  type="submit"
+                  [disabled]="!teamform.valid"
+                  value="Update"
+                  class="btn btn-outline-info"
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

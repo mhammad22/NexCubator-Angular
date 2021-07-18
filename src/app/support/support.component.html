@@ -1,0 +1,95 @@
+<div class="container bg-light">
+  <div class="card">
+    <div class="card-body">
+      <h2 class="text-center">SUPPORT</h2>
+      <div class="row">
+        <div class="col-sm-5">
+          <p>Contact us and we'll get back to you within 24 hours.</p>
+          <p>
+            <span class="glyphicon glyphicon-map-marker"></span> Lahore,
+            Pakistan
+          </p>
+          <p><span class="glyphicon glyphicon-phone"></span> +92 42 3456 987</p>
+          <p>
+            <span class="glyphicon glyphicon-envelope"></span>
+            support@nexcubator.com
+          </p>
+        </div>
+        <div class="col-sm-7">
+          <div class="form-group row">
+            <div class="col-sm-12 col-md-12 form-group">
+              <form
+                class="user"
+                #supportticket="ngForm"
+                (ngSubmit)="onClickSubmit(supportticket.value)"
+              >
+                <select
+                  [(ngModel)]="Category"
+                  #ctype="ngModel"
+                  class="form-control"
+                  data-val="true"
+                  style="max-width: inherit"
+                  data-val-required="The Category field is required."
+                  name="Category"
+                  id="Category"
+                  required
+                >
+                  <option [ngValue]="undefined" selected disabled>
+                    Select Type
+                  </option>
+                  <option *ngFor="let c of cat">
+                    {{ c.name }}
+                  </option>
+                </select>
+                <div *ngIf="ctype.touched && ctype.invalid" class="text-danger">
+                  <small *ngIf="ctype.errors.required">
+                    <li>Category is required.</li>
+                  </small>
+                </div>
+                <br />
+                <textarea
+                  [(ngModel)]="Issue"
+                  class="form-control"
+                  #itype="ngModel"
+                  data-val="true"
+                  data-val-required="The Issue field is required."
+                  id="comments"
+                  name="comments"
+                  placeholder="Please type issue here..."
+                  rows="5"
+                  required
+                ></textarea
+                ><br />
+                <div class="row">
+                  <div class="col-sm-12 form-group">
+                    <input
+                      [disabled]="!supportticket.valid"
+                      type="submit"
+                      class="btn btn-outline-success pull-right"
+                      value="Register"
+                    />
+                  </div>
+                </div>
+              </form>
+              <div id="Ret"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    document.getElementById("ViewServices").classList.remove("active");
+    document.getElementById("ExploreStartup").classList.remove("active");
+    document.getElementById("Services").classList.remove("active");
+    document.getElementById("Messages").classList.remove("active");
+    document.getElementById("HomePage").classList.remove("active");
+    document.getElementById("Setting").classList.remove("active");
+    var x = document.getElementById("Support").classList.add("active");
+  });
+</script>

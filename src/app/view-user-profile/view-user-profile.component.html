@@ -1,0 +1,199 @@
+<div class="container">
+  <hr />
+  <h3 class="text-center"><b>User Information</b></h3>
+  <hr />
+  <div class="card bg-light border-info">
+    <div class="card-body">
+      <div class="user" style="align-items: center">
+        <!-- <h4>Startup Pitch</h4> -->
+
+        <div class="card bg-light border-0">
+          <table class="table table-stripped">
+            <tbody>
+              <tr>
+                <td><b>Name :</b></td>
+                <td>{{ this.UserObj.Name }}</td>
+              </tr>
+              <tr>
+                <td><b>Gender :</b></td>
+                <td>{{ this.UserObj.Gender }}</td>
+              </tr>
+              <tr>
+                <td><b>Nationality :</b></td>
+                <td>{{ this.UserObj.Nationality }}</td>
+              </tr>
+              <tr>
+                <td><b>Email :</b></td>
+                <td>{{ this.UserObj.Email }}</td>
+              </tr>
+              <tr>
+                <td><b>Phone Number :</b></td>
+                <td>{{ this.UserObj.Phone }}</td>
+              </tr>
+            </tbody>
+          </table>
+          <div
+            style="
+              display: flex;
+              flex-direction: row;
+              justify-content: flex-end;
+              margin: 5px;
+            "
+          >
+            <input
+              type="submit"
+              style="width: 100px; margin: 10px"
+              class="btn btn-primary"
+              data-toggle="modal"
+              data-target="#myModal"
+              (click)="onClickEdit()"
+              value="Edit"
+            />
+            <!-- <input
+              type="submit"
+              style="width: 100px; margin: 10px"
+              class="btn btn-danger"
+              value="Delete"
+            /> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Add CArd -->
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4>User Profile</h4>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form
+            class="FormAddcard"
+            #addtask="ngForm"
+            (ngSubmit)="onClickSubmit()"
+          >
+            <div class="form-group">
+              <label for="title"><b>Name:</b></label>
+              <input
+                type="text"
+                [(ngModel)]="Name"
+                #ntype="ngModel"
+                class="form-control"
+                name="title"
+                data-val="true"
+                data-val-required="The Name field is required."
+                required
+              />
+              <div *ngIf="ntype.touched && ntype.invalid" class="text-danger">
+                <small *ngIf="ntype.errors.required">
+                  <li>Name is required.</li>
+                </small>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="des"><b>Gender:</b></label>
+              <input
+                type="text"
+                [(ngModel)]="Gender"
+                #dtype="ngModel"
+                class="form-control"
+                name="Gender"
+                data-val="true"
+                data-val-required="The Gender field is required."
+                required
+              />
+              <div *ngIf="dtype.touched && dtype.invalid" class="text-danger">
+                <small *ngIf="dtype.errors.required">
+                  <li>Gender is required.</li>
+                </small>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="des"><b>Nationality:</b></label>
+              <input
+                type="text"
+                [(ngModel)]="Nationality"
+                #natype="ngModel"
+                class="form-control"
+                name="Nationality"
+                data-val="true"
+                data-val-required="The Nationality field is required."
+                required
+              />
+              <div *ngIf="natype.touched && natype.invalid" class="text-danger">
+                <small *ngIf="natype.errors.required">
+                  <li>Nationality is required.</li>
+                </small>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="des"><b>Email:</b></label>
+              <input
+                type="email"
+                [(ngModel)]="Email"
+                #etype="ngModel"
+                class="form-control"
+                name="Email"
+                data-val="true"
+                data-val-required="The Email field is required."
+                pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                required
+              />
+              <div *ngIf="etype.touched && etype.invalid" class="text-danger">
+                <small *ngIf="etype.errors.required">
+                  <li>Email is required.</li>
+                </small>
+                <small *ngIf="etype.errors?.pattern" class="text-danger"
+                  >Please provide a valid email address</small
+                >
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="des"><b>Phone Number:</b></label>
+              <input
+                type="text"
+                [(ngModel)]="Phone"
+                #ptype="ngModel"
+                class="form-control"
+                name="Phone"
+                data-val="true"
+                data-val-required="The Phone Number field is required."
+                required
+              />
+              <div *ngIf="ptype.touched && ptype.invalid" class="text-danger">
+                <small *ngIf="ptype.errors.required">
+                  <li>Phone Number is required.</li>
+                </small>
+              </div>
+            </div>
+
+            <div
+              class="modal-footer"
+              style="display: flex; justify-content: center"
+            >
+              <input type="submit" data-dismiss="modal" />
+              <button type="button" class="btn btn-danger" data-dismiss="modal">
+                Close
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

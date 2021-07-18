@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="d-flex justify-content-center">
+        <div class="card shadow" style="width:100%;">
+            <div class="card-body">
+                <div class="d-flex flex-row align-items-center justify-content-between">
+                    <h4 class="card-title"><b>@Model.Name</b></h4>
+                    <div class="dropdown no-arrow float-right">
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                            <div class="dropdown-header">Options</div>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="\add-new-startup-form">Edit</a>
+                            <a class="dropdown-item" href="#">Delete</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 col-md-6">
+
+                        <div class="d-flex justify-content-center">
+                            <img class="align-middle" src="../../assets/img/undraw_rocket.svg" style="width:200px;height:200px;" />
+                        </div>
+
+                    </div>
+                    <div class="col-sm-8 col-md-6">
+                        <p class="card-text">
+                            <br><b>Location:</b> @Model.Location
+                            <br>
+                            <b>Email Address:</b> @Model.Email
+                            <br>
+                            <b>Domain:</b> @Model.Technology
+                            <br>
+                            <b>Description:</b> @Model.Description
+                            <br>
+                            <b>Funding Required:</b> @Model.Funding
+                        </p>
+                        <a href="../../Startup/AddProject?id=@Model.StartupId" class="btn btn-dark float-right m-1">Add Project</a>
+                        <a href="#" class="btn btn-dark float-right m-1">Add Event</a>
+                        <a href="../../Startup/AddTeamMember?id=@Model.StartupId" class="btn btn-dark float-right m-1">Add Team Member</a>
+                        <a href="../../Startup/AddPitch?id=@Model.StartupId" class="btn btn-dark float-right m-1">Add Pitch</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

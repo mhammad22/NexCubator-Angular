@@ -1,0 +1,103 @@
+<hr />
+<h3 class="text-center"><b>Manage All Tickets</b></h3>
+<hr />
+
+<!-- <button type="button" class="btn waves-effect waves-light blue" (click)="rerender()">
+  Rerender
+</button> -->
+
+<div class="card-body">
+  <table
+    class="table table-striped table-bordered table-sm row-border hover"
+    datatable
+    [dtTrigger]="dtTrigger"
+    [dtOptions]="dtOptions"
+  >
+    <thead>
+      <tr>
+        <th>Ticket Id</th>
+        <th>Email</th>
+        <th>Category</th>
+        <th>Issue</th>
+        <th>Date/Time</th>
+        <th>Status</th>
+        <th>Admin Response</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let s of TicketArr">
+        <td>{{ s.TicketId }}</td>
+        <td>{{ s.Email }}</td>
+        <td>{{ s.Category }}</td>
+        <td>{{ s.Issue }}</td>
+        <td>{{ s.TicketTime }}</td>
+        <td> {{ s.Status }} </td>
+        <td><button class="btn-primary" (click)="onStatusChange(s.TicketId)" id="{{s.TicketId}}"> {{s.AdminResponse }} </button></td>
+      </tr>
+      <!-- <tr>
+          <td>1</td>
+          <td>2</td>
+          <td>3</td>
+          <td>4</td>
+        </tr> -->
+    </tbody>
+  </table>
+</div>
+
+<!-- /.container-fluid -->
+
+<!-- End of Main Content -->
+<!-- Footer -->
+<!-- <footer class="sticky-footer bg-white">
+  <div class="container my-auto">
+    <div class="copyright text-center my-auto">
+      <span>Copyright &copy; NexCubator 2020</span>
+    </div>
+  </div>
+</footer> -->
+<!-- End of Footer -->
+
+<!-- End of Page Wrapper -->
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+  <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal
+<div
+  class="modal fade"
+  id="logoutModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+        <button
+          class="close"
+          type="button"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Select "Logout" below if you are ready to end your current session.
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">
+          Cancel
+        </button>
+        <a
+          class="btn btn-primary"
+          href="javascript:document.getElementById('logoutForm').submit()"
+          >Logout</a
+        >
+      </div>
+    </div>
+  </div>
+</div> -->

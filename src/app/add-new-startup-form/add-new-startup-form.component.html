@@ -1,0 +1,190 @@
+<div class="container">
+  <hr />
+  <h3 class="text-center"><b>Startup Information</b></h3>
+  <hr />
+
+  <div class="card bg-light border-info">
+    <div class="card-body">
+      <div class="user" style="align-items: center">
+        <!-- <h4>Startup Information</h4> -->
+        <!-- <hr /> -->
+        <div class="card bg-light border-0">
+          <form #sform="ngForm" (ngSubmit)="onClickSubmit()">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input
+                [(ngModel)]="name"
+                #n="ngModel"
+                type="text"
+                name=""
+                class="form-control"
+                id="name"
+                name="name"
+                required
+              />
+              <div *ngIf="n.invalid && n.touched">
+                <small *ngIf="n.errors?.required" class="text-danger"
+                  >Name is required</small
+                >
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="location">Location</label>
+              <input
+                [(ngModel)]="location"
+                #l="ngModel"
+                type="text"
+                class="form-control"
+                id="location"
+                name="location"
+                required
+              />
+              <div *ngIf="l.invalid && l.touched">
+                <small *ngIf="l.errors?.required" class="text-danger"
+                  >Location is required</small
+                >
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="rmail">Email</label>
+              <input
+                [(ngModel)]="email"
+                #e="ngModel"
+                type="text"
+                class="form-control"
+                id="email"
+                name="email"
+                pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                required
+              />
+              <div *ngIf="e.invalid && e.touched">
+                <small *ngIf="e.errors?.required" class="text-danger"
+                  >Email is required</small
+                >
+                <small *ngIf="e.errors?.pattern" class="text-danger"
+                  >Please provide a valid email address</small
+                >
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="Technology">Technology</label>
+              <input
+                [(ngModel)]="technology"
+                #t="ngModel"
+                type="text"
+                class="form-control"
+                id="Technology"
+                name="Technology"
+                required
+              />
+              <div *ngIf="t.invalid && t.touched">
+                <small *ngIf="t.errors?.required" class="text-danger"
+                  >Technology is required</small
+                >
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="description">Description</label>
+              <input
+                [(ngModel)]="description"
+                #d="ngModel"
+                type="text"
+                class="form-control"
+                id="description"
+                name="description"
+                required
+              />
+              <div *ngIf="d.invalid && d.touched">
+                <small *ngIf="d.errors?.required" class="text-danger"
+                  >Problem Statement is required</small
+                >
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="funding">Funding</label>
+              <input
+                [(ngModel)]="funding"
+                #f="ngModel"
+                type="text"
+                class="form-control"
+                id="funding"
+                name="funding"
+                required
+              />
+              <div *ngIf="f.invalid && f.touched">
+                <small *ngIf="f.errors?.required" class="text-danger"
+                  >Funding is required</small
+                >
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="problemStatement">Date Founded</label>
+              <input
+                [(ngModel)]="dateFounded"
+                #df="ngModel"
+                class="form-control"
+                type="date"
+                name="DateFounded"
+                id="DateFounded"
+                required
+              />
+              <div *ngIf="df.invalid && df.touched">
+                <small *ngIf="df.errors?.required" class="text-danger"
+                  >Date is required</small
+                >
+              </div>
+            </div>
+
+            <!-- Add Required to make logo compulsory -->
+            <div class="form-group">
+              <label for="problemStatement">Startup Logo</label>
+              <input
+                (change)="onChange($event)"
+                [(ngModel)]="logo"
+                #sl="ngModel"
+                type="file"
+                name="file1"
+                id="file1"
+                style="width: 100%"
+                required
+              />
+              <div *ngIf="sl.invalid && sl.touched">
+                <small *ngIf="sl.errors?.required" class="text-danger"
+                  >Logo is required</small
+                >
+              </div>
+            </div>
+
+            <div class="form-group" *ngIf="!EditFormCheck">
+              <div class="col-md-offset-2 col-md-10">
+                <input
+                  type="submit"
+                  [disabled]="!sform.valid"
+                  value="Create"
+                  class="btn btn-outline-primary"
+                />
+              </div>
+            </div>
+
+            <div class="form-group" *ngIf="EditFormCheck">
+              <div class="col-md-offset-2 col-md-10">
+                <input
+                  type="submit"
+                  [disabled]="!sform.valid"
+                  value="Update"
+                  class="btn btn-primary"
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

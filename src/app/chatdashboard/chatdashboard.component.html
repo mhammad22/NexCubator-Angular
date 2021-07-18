@@ -1,0 +1,188 @@
+<div class="container-fluid" style="min-width: 768px">
+    <div class="container">
+      <h4>Messaging</h4>
+      <div class="messaging">
+        <div class="inbox_msg">
+          <div class="inbox_people">
+            <div class="headind_srch">
+              <div class="recent_heading">
+                <h4>Recent</h4>
+              </div>
+              <div class="srch_bar">
+                <div class="stylish-input-group">
+                  <input type="text" class="search-bar" placeholder="Search" />
+                  <span class="input-group-addon">
+                    <button type="button">
+                      <i class="fa fa-search" aria-hidden="true"></i>
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="inbox_chat">
+              <div
+                *ngFor="let user of chat_users; let i = index"
+                [ngClass]="{ active_chat: selectedItem === i }"
+              >
+                <div
+                  class="chat_list"
+                  (click)="selectedItem = i; newMessage(user.email)"
+                >
+                  <div class="chat_people">
+                    <div class="chat_img">
+                      <img src="../../assets/user.png" alt="sunil" />
+                    </div>
+                    <div class="chat_ib">
+                      <h5>
+                        {{ user.name }}
+                        <span class="chat_date"> {{ user.date }} </span>
+                      </h5>
+                      <p id={{user.email}}>
+                        {{ user.last_text }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="chat_list">
+                <div class="chat_people">
+                  <div class="chat_img">
+                    <img src="../../assets/user.png" alt="sunil" />
+                  </div>
+                  <div class="chat_ib">
+                    <h5>Mindstorm Labs <span class="chat_date">Dec 24</span></h5>
+                    <p>
+                      Test, which is a new approach to have all solutions
+                      astrology under one roof.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="chat_list">
+                <div class="chat_people">
+                  <div class="chat_img">
+                    <img src="../../assets/user.png" alt="sunil" />
+                  </div>
+                  <div class="chat_ib">
+                    <h5>
+                      Invest 2 Innovate <span class="chat_date">Dec 24</span>
+                    </h5>
+                    <p>
+                      Test, which is a new approach to have all solutions
+                      astrology under one roof.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="chat_list">
+                <div class="chat_people">
+                  <div class="chat_img">
+                    <img src="../../assets/user.png" alt="sunil" />
+                  </div>
+                  <div class="chat_ib">
+                    <h5>KMS Holdings <span class="chat_date">Sep 29</span></h5>
+                    <p>
+                      Test, which is a new approach to have all solutions
+                      astrology under one roof.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="chat_list">
+                <div class="chat_people">
+                  <div class="chat_img">
+                    <img src="../../assets/user.png" alt="sunil" />
+                  </div>
+                  <div class="chat_ib">
+                    <h5>United Group <span class="chat_date">Sep 15</span></h5>
+                    <p>
+                      Test, which is a new approach to have all solutions
+                      astrology under one roof.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="chat_list">
+                <div class="chat_people">
+                  <div class="chat_img">
+                    <img src="../../assets/user.png" alt="sunil" />
+                  </div>
+                  <div class="chat_ib">
+                    <h5>Shark Labs <span class="chat_date">Oct 5</span></h5>
+                    <p>
+                      Test, which is a new approach to have all solutions
+                      astrology under one roof.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="chat_list">
+                <div class="chat_people">
+                  <div class="chat_img">
+                    <img src="../../assets/user.png" alt="sunil" />
+                  </div>
+                  <div class="chat_ib">
+                    <h5>Shark Labs <span class="chat_date">Oct 1</span></h5>
+                    <p>
+                      Test, which is a new approach to have all solutions
+                      astrology under one roof.
+                    </p>
+                  </div>
+                </div>
+              </div> -->
+            </div>
+          </div>
+          <div class="mesgs">
+            <div class="headind_srch" style="margin-bottom: 5px">
+              <div class="recent_heading">
+                <h4>{{ current_active }}</h4>
+              </div>
+            </div>
+            <div #myList>
+              <div class="msg_history" id="history">
+                <div *ngFor="let msg of messages; let last = last">
+                  <div class="incoming_msg" *ngIf="msg.type == 'received'" style="margin-bottom: 10px;">
+                    <div class="incoming_msg_img">
+                      <img src="../../assets/user.png" alt="sunil" />
+                    </div>
+                    <div class="received_msg">
+                      <div class="received_withd_msg">
+                        <p>{{ msg.message }}</p>
+                        <span class="time_date"> {{ msg.date }} </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="outgoing_msg" *ngIf="msg.type == 'sent'" style="margin-bottom: 10px;">
+                    <div class="sent_msg">
+                      <p>{{ msg.message }}</p>
+                      <span class="time_date"> {{ msg.date }} </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="type_msg" style="margin-top: 10px;">
+              <div class="input_msg_write">
+                <input
+                  type="text"
+                  class="write_msg"
+                  [(ngModel)]="txtMessage"
+                  name="TextMessage"
+                  (keydown.enter)="sendMessage()"
+                  placeholder="Type a message..."
+                />
+                <button
+                  class="msg_send_btn"
+                  type="button"
+                  (click)="sendMessage()"
+                >
+                  <i class="far fa-arrow-alt-circle-right" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

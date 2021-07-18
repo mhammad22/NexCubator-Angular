@@ -1,0 +1,37 @@
+<div class="container">
+    <hr />
+    <h4>Startup Pitch</h4>
+    <hr />
+    <div class="">
+        <div class="card shadow m-1" style="width:100%;">
+            <div class="card-body">
+                <div class="d-flex flex-row align-items-center justify-content-between">
+                    <b>Problem Statement: </b>
+                    <div class="dropdown no-arrow float-right">
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                            <div class="dropdown-header">Options</div>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="\add-pitch-form">Edit</a>
+                            <a class="dropdown-item" href="#">Delete</a>
+                        </div>
+                    </div>
+                </div>
+                <p>@ViewBag.Pitch.ProblemStatement</p>
+                <br />
+                <b>Proposed Solution: </b>
+                <p>@ViewBag.Pitch.ProposedSolution</p>
+                <br />
+                <b>Value Proposition: </b>
+                <p>@ViewBag.Pitch.ValueProposition</p>
+                <br />
+                <b>Market Plan: </b>
+                <p>@ViewBag.Pitch.MarketPlan</p>
+                <br />
+            </div>
+        </div>
+    </div>
+
+</div>
